@@ -28,15 +28,21 @@ public class SearchController {
     public String search(Model model, @RequestParam String searchType , @RequestParam String searchTerm) {
 
         model.addAttribute("columns", ListController.columnChoices);
-        ArrayList<HashMap<String, String>> jobs = JobData.findByValue(searchTerm);
-        for (HashMap<String, String> job: jobs) {
-            if (jobs.contains(searchTerm)) {
-                return "search";
-            }
-        }
-        return "search";
-    }
 
-}
+        ArrayList<HashMap<String, String>> jobs;
+
+        if (searchType.equals("all")) {
+
+            jobs = JobData.findByValue(searchTerm);
+        }
+        else {
+            jobs = JobData.findByColumnAndValue(searchType, searchTerm);
+        }
+
+        model.addAttribute("jobs", jobs);
+        return "search";
+        }
+
+    }
 
 
