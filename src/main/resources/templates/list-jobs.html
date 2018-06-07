@@ -13,9 +13,12 @@
     <!-- TODO #3 - Use the same list display from search.html -->
     <div>
         <table class="job-listing" th:each="job : ${jobs}">
-            <tr th:each="result : ${job}">
+            <tr th:each="result, iterStat : ${job}" th:class="${iterStat.count}? 'count'">
 
-                <td th:text="${result.getKey() +' '+ result.getValue()}"></td>
+                <td th:text="${result.getKey()}"></td>
+                <td th:text="${result.getValue()}"></td>
+
+
             </tr>
         </table>
     </div>
