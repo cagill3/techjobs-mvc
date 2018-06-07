@@ -40,7 +40,7 @@
 
     <div>
         <table class="job-listing" th:each="job : ${jobs}">
-            <tr th:each="result, iterStat : ${job}" th:class="${iterStat.count}? 'count'">
+            <tr th:each="result : ${job}">
 
                 <td th:text="${result.getKey()}"></td>
                 <td th:text="${result.getValue()}"></td>
